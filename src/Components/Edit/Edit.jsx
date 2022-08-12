@@ -1,38 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import NoteData from "../Data/NoteData";
+import HomePage from '../HomePage/HomePage';
 
-  export default function Edit({id}) {
-    const [noteId, setNoteId] = useState("");
+  export default function Edit({id, setNoteId}) {
     const [title, setTitle] = useState("");
     const [note, setNote] = useState("");
     const [message, setMessage] = useState({ error: false, msg: "" });
     
 
-    const getBookIdHandler = (id) => {
-      console.log("The ID of document to be edited: ", id);
-      setNoteId(id);
-    };
-
-    const newNote = {
-      title,
-      note,
-    };
-    console.log(newNote);
-
-    try {
-         NoteData.updateNote(id, newNote);
-        setNoteId("");
-        setMessage({ error: false, msg: "Updated successfully!" });
+    // const newNote = {
+    //   title,
+    //   note,
       
-    } catch (err) {
-      setMessage({ error: true, msg: err.message });
-    }
+    // };
+    // console.log(newNote);
+
+    // try {
+    //   if (id !== undefined && id !== "") {
+    //     NoteData.updateNote(id, newNote);
+    //     setNoteId("");
+    //     setMessage({ error: false, msg: "Updated successfully!" });
+    //   }
+    // } catch (err) {
+    //   setMessage({ error: true, msg: err.message });
+    // }
   
-    setTitle("");
-    setNote("");
+ 
 
     const editHandler = async () => {
       setMessage("");
@@ -47,9 +43,22 @@ import NoteData from "../Data/NoteData";
       }
     };
     
-  
+    useEffect(() => {
+      console.log("The id here is : ", id);
+        editHandler();
+      
+    }, []);
 
-    
+  //     const getNote = async () => {
+  //   const data = await NoteData.getAllNotes();
+  //   console.log(data.docs);
+  //   setNote(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  // };
+
+  //   const deleteHandler = async (id) => {
+  //     await NoteData.deletenote(id);
+  //     getNote();
+  //   };
 
   return (
     <div className='addnote'>

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import NoteData from "../Data/NoteData";
 
-export default function HomePage({getBookId}) {
+export default function HomePage({getNoteId}) {
   const navigate = useNavigate()
   const [note, setNote] = useState([]);
 
@@ -40,7 +40,7 @@ export default function HomePage({getBookId}) {
             <div className="btn">
             <Button  onClick = {(id) =>{
               console.log(doc.id); 
-              navigate(`/edit/${doc.id}`)
+              navigate(`/edit/${getNoteId(doc.id)}`)
             }} >Edit</Button>
 
             <Button onClick = {(id) =>{
