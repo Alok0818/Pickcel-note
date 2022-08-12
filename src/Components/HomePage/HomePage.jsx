@@ -46,7 +46,6 @@ export default function HomePage({getBookId}) {
             <Button onClick = {(id) =>{
             deleteHandler(doc.id)
             }} >Delete</Button>
-
             </div>
           </div>
         )})

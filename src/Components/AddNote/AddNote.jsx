@@ -1,5 +1,5 @@
 
-import "./AdminPanel.css"
+import "./AddNote.css"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -7,12 +7,11 @@ import React, {  useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import NoteData from "../Data/NoteData";
 
-export default function AdminPanel({id, setNoteId }) {
+export default function AddNote({id, setNoteId }) {
 
 const navigate = useNavigate()
 const [title, setTitle] = useState("");
 const [note, setNote] = useState("");
-const [flag, setFlag] = useState(true);
 const [message, setMessage] = useState({ error: false, msg: "" });
 
 const handleSubmit = async (e) => {
@@ -29,14 +28,15 @@ const handleSubmit = async (e) => {
   console.log(newNote);
 
   try {
-    if (id !== undefined && id !== "") {
-      await NoteData.updateNotes(id, newNote);
-      setNoteId("");
-      setMessage({ error: false, msg: "Updated successfully!" });
-    } else {
+    // if (id !== undefined && id !== "") {
+      // await NoteData.updateNotes(id, newNote);
+      // setNoteId("");
+      // setMessage({ error: false, msg: "Updated successfully!" });
+    // } 
+    // else {
       await NoteData.addNotes(newNote);
       setMessage({ error: false, msg: "New note added successfully!" });
-    }
+    // }
   } catch (err) {
     setMessage({ error: true, msg: err.message });
   }
@@ -51,7 +51,7 @@ const handleSubmit = async (e) => {
 
 
   return (
-    <div className='addmovies'>
+    <div className='addnote'>
       <h2>Add New Note</h2>
 
       <div>
